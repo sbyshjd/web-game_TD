@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tower Defense Game</title>
+    <link rel="stylesheet" href="./stylesheets/style.css">
+</head>
+<body>
+    <div class="statics">
+        <div id="money">MONEY: <i>0</i> $</div>
+        <div id="life"><p>LIFE: </p>
+            <div id = 'life-icon'><span>&#9829;</span><span>&#9829;</span><span>&#9829;</span><span>&#9829;</span><span>&#9829;</span></div>
+        </div>
+        <div id="count">ROUND <i>1</i>/30</div>
+    </div>
+    <canvas id="canvas"></canvas>
+    <div class="control-panel">
+        <div class="towers">
+            <div id="cannon">
+                <button class="tower-btn"></button>
+                <p>Cannon($10)</p>
+            </div>
+            <div id="laser">
+                <button class="tower-btn"></button>
+                <p>Laser($20)</p>
+            </div>
+            <div id="missile">
+                <button class="tower-btn"></button>
+                <p>Missile($30)</p>
+            </div>   
+        </div>
+        <div class="timer">
+            <h2>NEXT ROUND: <i>10S</i></h2>
+        </div>
+        <div class="p-s-r">
+            <button id="start"><h3>PAUSE</h3></button>
+            <button id="pause"><p>RESET</p></button>
+            <button id="reset"><p>QUIT</p></button>
+        </div>
+    </div>
+
+
+
+
+    <script src='./js/game-control.js'></script>
+    <script src="./js/main.js"></script>
+    <script src="./js/getTower-setTower.js"></script>
+</body>
+</html>

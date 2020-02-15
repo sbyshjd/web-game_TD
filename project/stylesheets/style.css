@@ -1,0 +1,106 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+#canvas {
+    display: block;
+    /* margin-left: auto;
+    margin-right: auto; */
+}
+.statics {
+    /* margin-left: auto;
+    margin-right: auto; */
+    margin-top: 10px;
+    margin-bottom: 5px;
+    width: 900px;
+    height: 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: gray;
+    padding-left: 50px;
+    padding-right: 50px;
+}
+.statics {
+    color: white;
+}
+#life {
+    display: flex;
+    justify-content: flex-start;
+    width: 300px;
+}
+#life span {
+    font-size: 20px;
+    margin-left: 5px;
+}
+.control-panel {
+    /* margin-left: auto;
+    margin-right: auto; */
+    margin-top: 5px;
+    width: 900px;
+    height: 90px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    padding-right: 50px;
+    background-color: gray;
+}
+.towers {
+    display: flex;
+}
+.towers>div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+.tower-btn {
+    
+    /* border: none; */
+    text-align: center;
+    height: 50px;
+    width: 50px;
+    border-radius: 25px;
+    cursor: pointer;
+    position: relative;
+}
+#cannon button {
+    background-color: #D9B54A;
+    position: relative;
+}
+#laser button {
+    background-color: rgb(206, 93, 48);
+    position: relative;
+}
+#missile button {
+    background-color: rgb(217, 74, 217);
+    position: relative;
+}
+.towers p {
+    margin-top: 5px;
+    font-size: 12px;
+}
+.p-s-r {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    width: 200px;
+}
+#start {
+    display: block;
+    width: 200px;
+    margin-bottom: 10px;
+}
+#pause {
+    width: 90px;
+}
+#reset {
+    width: 90px;
+}
+.no-pointer {
+    pointer-events: none;
+}
+
