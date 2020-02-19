@@ -3,6 +3,33 @@
     padding: 0;
     box-sizing: border-box;
 }
+#map-grid {
+    padding-top: 25px;
+    top:65px;
+    position: fixed;
+    width: 900px;
+    height: 500px;
+    background-color: rgba(255, 255, 255, 0.5);
+    display: flex;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    pointer-events: none;
+
+
+}
+.cell {
+    width: 50px;
+    height: 50px;
+    border: 0.5px solid white;
+    margin: 0;
+    padding: 0;
+}
+#map-tower {
+    top:65px;
+    width: 900px;
+    height: 500px;
+    position: fixed;
+}
 #canvas {
     display: block;
     /* margin-left: auto;
@@ -69,14 +96,23 @@
 }
 #cannon button {
     background-color: #D9B54A;
+    
+}
+#cannon {
     position: relative;
 }
 #laser button {
     background-color: rgb(206, 93, 48);
+    
+}
+#laser {
     position: relative;
 }
 #missile button {
     background-color: rgb(217, 74, 217);
+    
+}
+#missile {
     position: relative;
 }
 .towers p {
@@ -89,18 +125,86 @@
     justify-content: space-between;
     width: 200px;
 }
-#start {
+#pause {
     display: block;
     width: 200px;
     margin-bottom: 10px;
-}
-#pause {
-    width: 90px;
+    cursor: pointer;
 }
 #reset {
     width: 90px;
+    cursor: pointer;
+}
+#quit {
+    width: 90px;
+    cursor: pointer;
 }
 .no-pointer {
     pointer-events: none;
+}
+
+.invisible {
+    display: none;
+}
+
+#start-page {
+    padding-top: 100px;
+    width: 900px;
+    height: 660px;
+    background-color: red;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+
+}
+#start-page h1 {
+    font-size: 75px;
+}
+#start-btn {
+    display: block;
+    margin: 0 auto;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    color: red;
+    font-size: 32px;
+    font-weight: bold;
+    margin-top: 50px;
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+#start-page p {
+    font-size: 12px;
+    color: rgb(207, 207, 207);
+}
+
+#end-page {
+    width: 900px;
+    height: 660px;
+    background-color: seashell;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+}
+#end-page h1 {
+    font-size: 75px;
+}
+#try-again {
+    font-size: 16px;
+    border-radius: 20px;
+    width: 200px;
+    height: 50px;
+}
+#end-page p {
+    color: rgb(197, 197, 197);
+}
+
+button.tower-in-map:hover + div {
+    display: block;
+}
+.no-display {
+    display: none;
 }
 

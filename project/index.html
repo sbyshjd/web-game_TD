@@ -7,44 +7,66 @@
     <link rel="stylesheet" href="./stylesheets/style.css">
 </head>
 <body>
-    <div class="statics">
-        <div id="money">MONEY: <i>0</i> $</div>
-        <div id="life"><p>LIFE: </p>
-            <div id = 'life-icon'><span>&#9829;</span><span>&#9829;</span><span>&#9829;</span><span>&#9829;</span><span>&#9829;</span></div>
+    <div id="start-page">
+        <div>
+            <h1>Tower Defense</h1>
+            <h2>5 lifes for 10 round / survive and you will win</h2>
         </div>
-        <div id="count">ROUND <i>1</i>/30</div>
+        <div >
+            <button id ='start-btn'>GO!</button>
+            
+        </div>
+        <p>tips: press esc to cancel your tower selection </p>
     </div>
-    <canvas id="canvas"></canvas>
-    <div class="control-panel">
-        <div class="towers">
-            <div id="cannon">
-                <button class="tower-btn"></button>
-                <p>Cannon($10)</p>
+    <div id="game-page">
+        <div id="map-grid"></div>
+        <div id="map-tower"></div>
+        <div class="statics">
+            <div id="money">MONEY: <i>0</i> $</div>
+            <div id="life"><p>LIFE: </p>
+                <div id = 'life-icon'></div>
             </div>
-            <div id="laser">
-                <button class="tower-btn"></button>
-                <p>Laser($20)</p>
+            <div id="count">ROUND <i>1</i>/<strong>5</strong></div> 
+        </div>
+        <canvas id="canvas"></canvas>
+        
+        <div class="control-panel">
+            <div class="towers">
+                <div id="cannon">
+                    <button class="tower-btn"></button>
+                    <p>Cannon($10)</p>
+                </div>
+                <div id="laser">
+                    <button class="tower-btn"></button>
+                    <p>Laser($20)</p>
+                </div>
+                <div id="missile">
+                    <button class="tower-btn"></button>
+                    <p>Missile($30)</p>
+                </div>   
             </div>
-            <div id="missile">
-                <button class="tower-btn"></button>
-                <p>Missile($30)</p>
-            </div>   
-        </div>
-        <div class="timer">
-            <h2>NEXT ROUND: <i>10S</i></h2>
-        </div>
-        <div class="p-s-r">
-            <button id="start"><h3>PAUSE</h3></button>
-            <button id="pause"><p>RESET</p></button>
-            <button id="reset"><p>QUIT</p></button>
+            <div class="timer">
+                <h2>NEXT ROUND: <i>15</i> S</h2>
+            </div>
+            <div class="p-s-r">
+                <button id="pause"><h3>PAUSE</h3></button>
+                <button id="reset"><p>RESET</p></button>
+                <button id="quit"><p>QUIT</p></button>
+            </div>
         </div>
     </div>
+    <div id="end-page">
+        <h1>You Lose!</h1>
+        <button id="try-again">TRY AGAIN</button>
+        <p>MADE BY BOYUAN FROM IRONHACK</p>
+    </div>
+ 
 
 
 
 
     <script src='./js/game-control.js'></script>
-    <script src="./js/main.js"></script>
+    <script src="./js/canvas-logic.js"></script>
     <script src="./js/getTower-setTower.js"></script>
 </body>
 </html>
