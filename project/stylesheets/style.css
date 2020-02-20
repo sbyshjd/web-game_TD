@@ -101,6 +101,11 @@
 #cannon {
     position: relative;
 }
+.cannon-range {
+    position: absolute;
+    width: 400px;
+    height: 400px;
+}
 #laser button {
     background-color: rgb(206, 93, 48);
     
@@ -108,12 +113,21 @@
 #laser {
     position: relative;
 }
+.laser-range {
+    position: absolute;
+    width: 200px;
+    height: 200px;
+}
 #missile button {
     background-color: rgb(217, 74, 217);
-    
 }
 #missile {
     position: relative;
+}
+.missile-range {
+    position: absolute;
+    width: 800px;
+    height: 800px;
 }
 .towers p {
     margin-top: 5px;
@@ -206,5 +220,19 @@ button.tower-in-map:hover + div {
 }
 .no-display {
     display: none;
+}
+.tower-menu {
+    position: absolute;
+    left:50px;
+    top: 0px;
+    list-style-type: none;
+    z-index: 1;
+
+}
+.tower-menu>li {
+    background-color: white;
+    border-radius: 2px;
+    padding: 5px;
+    cursor: pointer;
 }
 

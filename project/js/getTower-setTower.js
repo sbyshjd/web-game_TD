@@ -3,9 +3,11 @@ let towers = document.querySelector('.towers');
 let statics = document.querySelector('.statics');
 let controlPanel = document.querySelector('.control-panel')
 
-
+let towerPackage = null;
 let copiedTower = null;
 let attackDiv = null;
+let towerMenu = null;
+let menuOpen = false;
 
 //create a map to get its x and y for moving the towers
 let map = {x:0,y:0}
@@ -30,25 +32,20 @@ function copy(e) {
         attackDiv = document.createElement('div');
         //set the attackDiv style
         attackDiv.classList.add('tower-in-map')
-        attackDiv.style.position = 'absolute';
+        // attackDiv.style.position = 'absolute';
         switch (e.target.parentNode.id) {
             case 'cannon':
-                attackDiv.style.width = '400px';
-                attackDiv.style.height = '400px';
+                attackDiv.classList.add('cannon-range');
                 attackDiv.style.top = '-175px';
-                attackDiv.classList.add('cannon');
                 break;
             case 'laser':
-                attackDiv.style.width = '200px';
-                attackDiv.style.height = '200px';
+                attackDiv.classList.add('laser-range');
                 attackDiv.style.top = '-75px';
-                attackDiv.classList.add('laser');
+                
                 break;
             case 'missile':
-                attackDiv.style.width = '800px';
-                attackDiv.style.height = '800px';
+                attackDiv.classList.add('missile-range');
                 attackDiv.style.top = '-375px';
-                attackDiv.classList.add('missile');
                 break;
             default:
                 break;
@@ -96,23 +93,30 @@ function translate(e) {
         if((rect.x >= 0 && rect.x <= 150-50)&&(rect.y < 315+25 && rect.y > 215-50+25) ) {
             canvas.classList.add('no-pointer')
             copiedTower.style.visibility = 'hidden'
+            attackDiv.style.visibility = 'hidden'
         } else if ((rect.x >150-50 && rect.x <= 250)&&(rect.y < 465+25 && rect.y > 215-50+25)) {
             canvas.classList.add('no-pointer')
             copiedTower.style.visibility = 'hidden'
+            attackDiv.style.visibility = 'hidden'
         } else if ((rect.x > 250 && rect.x<=450)&&(rect.y < 465+25 && rect.y > 365-50+25)) {
             canvas.classList.add('no-pointer')
             copiedTower.style.visibility = 'hidden'
+            attackDiv.style.visibility = 'hidden'
         } else if ((rect.x > 400 && rect.x <= 550)&&(rect.y < 465+25 && rect.y > 115-50+25)) {
             canvas.classList.add('no-pointer')
             copiedTower.style.visibility = 'hidden'
+            attackDiv.style.visibility = 'hidden'
         } else if ((rect.x > 550 && rect.x <= 900)&&(rect.y < 215+25 && rect.y > 115-50+25)) {
             canvas.classList.add('no-pointer')
             copiedTower.style.visibility = 'hidden'
+            attackDiv.style.visibility = 'hidden'
         } else if (rect.x < 0 || rect.x > 825 || rect.y > 565 || rect.y < 65 ) {
             copiedTower.style.visibility = 'hidden'
+            attackDiv.style.visibility = 'hidden'
         }
         else {
             copiedTower.style.visibility = 'visible'
+            attackDiv.style.visibility = 'visible'
             canvas.classList.remove('no-pointer')
     }
          } 
@@ -187,34 +191,53 @@ function setTower(e) {
                 break;          
         }   
         game.money -= tower.price; 
-// remove the tower and attackdiv from the control panel 
-        // copiedTower.parentNode.removeChild(copiedTower);
-        // attackDiv.parentNode.removeChild(attackDiv);
-        // //add the tower and attackdiv into the tower-in-map 
-        // towerInMap.appendChild(copiedTower);
-
-        // towerInMap.appendChild(attackDiv);
-        console.log(copiedTower.getBoundingClientRect());
+        //create the tower package
+        towerPackage = document.createElement('div')
+        towerPackage.style.position = 'absolute';
+        mapTower.appendChild(towerPackage);
+        towerPackage.style.top = (y-25)+'px';
+        towerPackage.style.left = (x-25)+'px';
+        // console.log(copiedTower.getBoundingClientRect());
+        //remove the copidTower from the control panel div and put it into the tower-map div
         copiedTower.parentNode.removeChild(copiedTower);
-        mapTower.appendChild(copiedTower);
+        towerPackage.appendChild(copiedTower);
+        //reset the tranform by the new div
         copiedTower.style.transform = '';
-        copiedTower.style.top = (y-25)+'px';
-        copiedTower.style.left = (x-25)+'px';
+        copiedTower.style.top = '0px';
+        copiedTower.style.left = '0px';
+
+        //remove the attackDiv like the copiedTower
         attackDiv.parentNode.removeChild(attackDiv);
-        mapTower.appendChild(attackDiv);
+        towerPackage.appendChild(attackDiv);
+        //reset the transform like the copiedTower
         attackDiv.style.transform = '';
-        if([...attackDiv.classList].includes('cannon')) {
-            attackDiv.style.top = (y-200)+'px';
-            attackDiv.style.left = (x-200)+'px';
+        if([...attackDiv.classList].includes('cannon-range')) {
+            // attackDiv.style.top = (y-200)+'px';
+            // attackDiv.style.left = (x-200)+'px';
+            attackDiv.style.top = '-175px';
+            attackDiv.style.left = '-175px';
         }
-        if([...attackDiv.classList].includes('laser')) {
-            attackDiv.style.top = (y-100)+'px';
-            attackDiv.style.left = (x-100)+'px';
+        if([...attackDiv.classList].includes('laser-range')) {
+            // attackDiv.style.top = (y-100)+'px';
+            // attackDiv.style.left = (x-100)+'px';
+            attackDiv.style.top = '-75px';
+            attackDiv.style.left = '-75px';
         }
-        if([...attackDiv.classList].includes('missile')) {
-            attackDiv.style.top = (y-400)+'px';
-            attackDiv.style.left = (x-400)+'px';
+        if([...attackDiv.classList].includes('missile-range')) {
+            // attackDiv.style.top = (y-400)+'px';
+            // attackDiv.style.left = (x-400)+'px';
+            attackDiv.style.top = '-375px';
+            attackDiv.style.left = '-375px';
         }
+
+        //create the towerMenu
+        towerMenu = document.createElement('ul')
+        towerMenu.classList.add('tower-menu')
+        towerMenu.classList.add('no-display')
+        let towerMenuItem01 = document.createElement('li')
+        towerMenuItem01.innerHTML = 'delete'
+        towerMenu.appendChild(towerMenuItem01);
+        towerPackage.appendChild(towerMenu);
 
 
         mapTower.classList.remove('no-pointer');
@@ -235,3 +258,48 @@ function gridTransferY(y) {
     let m = Math.floor((y-25)/50);
     return m*50 +25+25;
 }
+
+
+//show and hide the tower menu
+mapTower.addEventListener('click',showTowerMenu,false)
+function showTowerMenu(e) {
+    if(e.target.parentNode.parentNode.id === 'map-tower') {
+        if( menuOpen === false) {
+            e.target.parentNode.lastChild.classList.remove('no-display')
+            menuOpen = true
+        } else {
+            e.target.parentNode.lastChild.classList.add('no-display')
+            menuOpen = false
+        }
+    }
+    if([...e.target.parentNode.classList].includes('tower-menu')) {
+        //get the tower x/y on the canvas to delete the canvas tower from the array
+        let towerX = e.target.parentNode.parentNode.getClientRects()[0].x +25;
+        let towerY = e.target.parentNode.parentNode.getClientRects()[0].y +25;
+        
+        if([...e.target.parentNode.previousElementSibling.classList].includes('cannon-range')) {
+            let towerIndex = game.cannonArr.findIndex(t => {
+                t.x === towerX && t.y === towerY
+            });
+            game.cannonArr.splice(towerIndex,1);
+            game.money += 5;
+        }
+        if([...e.target.parentNode.previousElementSibling.classList].includes('laser-range')) {
+            let towerIndex = game.laserArr.findIndex(t => {
+                t.x === towerX && t.y === towerY
+            });
+            game.laserArr.splice(towerIndex,1);
+            game.money += 10;
+        }
+        if([...e.target.parentNode.previousElementSibling.classList].includes('missile-range')) {
+            let towerIndex = game.missileArr.findIndex(t => {
+                t.x === towerX && t.y === towerY
+            });
+            game.missileArr.splice(towerIndex,1);
+            game.money += 15;
+        }
+        e.target.parentNode.parentNode.parentNode.removeChild(e.target.parentNode.parentNode)
+        
+    }
+}
+

@@ -21,6 +21,7 @@ let oldGame = document.querySelectorAll('.tower-in-map');
 let towerInMap = document.querySelectorAll('button.tower-in-map')
 let attackDivInMap = document.querySelectorAll('div.tower-in-map')
 let mapTower = document.querySelector('#map-tower')
+let deleteMenu = document.querySelectorAll('.tower-menu li')
 //gamepage for animation
 let oldTimeStamp=0;
 //60 frames per second
@@ -76,10 +77,10 @@ class Game {
             gameLife.appendChild(heartIcon);
         }
         //cleanup the DOM tree
-
-        oldGame.forEach(e => {
-            e.parentNode.removeChild(e);
-        })
+        // oldGame.forEach(e => {
+        //     e.parentNode.removeChild(e);
+        // })
+        mapTower.innerHTML = '';
         //set the round to first
         timer.innerHTML = 'NEXT ROUND: <i>15</i> S';
     }
@@ -91,7 +92,7 @@ class Game {
         oldGame = document.querySelectorAll('.tower-in-map')
         towerInMap = document.querySelectorAll('button.tower-in-map')
         attackDivInMap = document.querySelectorAll('div.tower-in-map')
-
+        deleteMenu = document.querySelectorAll('.tower-menu li')
         //show the grid
         if(this.showGrid === true) {
             mapGrip.style.display = 'flex';
@@ -187,6 +188,7 @@ function gameBegin() {
 quitBtn.addEventListener('click',gameQuit,false)
 function gameQuit() {
     game = new Game();
+    game.chargeLife();
     oldTimeStamp =0;
     fps.i = -1;
     game.starter = true;
@@ -231,8 +233,11 @@ function gameReset() {
     game.end= false;
     oldTimeStamp =0;
     fps.i = -1;
-
-
 }
+
+// deleteMenu.forEach(li => {
+//     li.addEventListener('click', deleteTheTower, false)
+// })
+
 
 
